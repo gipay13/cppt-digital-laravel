@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Filament\Resources\Patients\Pages;
+
+use App\Filament\Resources\Patients\PatientResource;
+use Filament\Actions\CreateAction;
+use Filament\Resources\Pages\ManageRecords;
+
+class ManagePatients extends ManageRecords
+{
+    protected static string $resource = PatientResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [
+            CreateAction::make()
+                ->icon('heroicon-o-plus')
+                ->iconSize('sm')
+                ->modalWidth('xl'),
+        ];
+    }
+}
