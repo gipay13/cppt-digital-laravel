@@ -145,9 +145,7 @@ class PatientResource extends Resource
                 EditAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+
             ]);
     }
 
