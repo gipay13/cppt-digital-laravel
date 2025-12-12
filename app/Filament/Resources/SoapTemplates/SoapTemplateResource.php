@@ -41,7 +41,7 @@ class SoapTemplateResource extends Resource
                 Textarea::make('subjective')
                     ->required()
                     ->columnSpanFull(),
-                Textarea::make('objecttive')
+                Textarea::make('objective')
                     ->required()
                     ->columnSpanFull(),
                 Textarea::make('assessment')
@@ -57,15 +57,22 @@ class SoapTemplateResource extends Resource
     {
         return $schema
             ->components([
-                TextEntry::make('title'),
+                TextEntry::make('title')
+                    ->label('Nama template')
+                    ->inlineLabel()
+                    ->columnSpanFull(),
                 TextEntry::make('subjective')
-                    ->columnSpanFull(),
-                TextEntry::make('objecttive')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->inlineLabel(),
+                TextEntry::make('objective')
+                    ->columnSpanFull()
+                    ->inlineLabel(),
                 TextEntry::make('assessment')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->inlineLabel(),
                 TextEntry::make('plan')
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->inlineLabel(),
             ]);
     }
 
@@ -84,7 +91,7 @@ class SoapTemplateResource extends Resource
             ])
             ->recordActions([
                 ViewAction::make()
-                    ->modalWidth('md'),
+                    ->modalWidth('xl'),
                 EditAction::make()
                     ->modalWidth('md'),
                 DeleteAction::make(),

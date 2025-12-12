@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('subjective');
-            $table->text('objecttive');
+            $table->text('objective');
             $table->text('assessment');
             $table->text('plan');
             $table->timestamps();
