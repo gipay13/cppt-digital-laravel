@@ -16,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -37,39 +38,46 @@ class PatientResource extends Resource
     {
         return $schema
             ->components([
-                TextInput::make('nomr')
-                    ->label('No. Rekam medis')
-                    ->numeric()
-                    ->unique(ignoreRecord: true)
-                    ->length(8)
-                    ->required(),
-                TextInput::make('name')
-                    ->label('Nama lengkap')
-                    ->required(),
-                Select::make('sex')
-                    ->label('Jenis kelamin')
-                    ->native(false)
-                    ->options([
-                        'L' => 'Laki-laki',
-                        'P' => 'Perempuan'
-                    ])
-                    ->required(),
-                DatePicker::make('born_date')
-                    ->label('Tanggal lahir')
-                    ->native(false)
-                    ->closeOnDateSelection()
-                    ->required(),
-                Textarea::make('address')
-                    ->label('Alamat')
-                    ->required()
-                    ->columnSpanFull(),
-                TextInput::make('pic_name')
-                    ->label('Nama penanggung jawab')
-                    ->required(),
-                TextInput::make('pic_phone')
-                    ->label('No. Handphone')
-                    ->tel()
-                    ->required(),
+                Grid::make([
+                    'default' => 1,
+                    'md' => 2
+                ])
+                ->schema([
+                    TextInput::make('nomr')
+                        ->label('No. Rekam medis')
+                        ->numeric()
+                        ->unique(ignoreRecord: true)
+                        ->length(8)
+                        ->required(),
+                    TextInput::make('name')
+                        ->label('Nama lengkap')
+                        ->required(),
+                    Select::make('sex')
+                        ->label('Jenis kelamin')
+                        ->native(false)
+                        ->options([
+                            'L' => 'Laki-laki',
+                            'P' => 'Perempuan'
+                        ])
+                        ->required(),
+                    DatePicker::make('born_date')
+                        ->label('Tanggal lahir')
+                        ->native(false)
+                        ->closeOnDateSelection()
+                        ->required(),
+                    Textarea::make('address')
+                        ->label('Alamat')
+                        ->required()
+                        ->columnSpanFull(),
+                    TextInput::make('pic_name')
+                        ->label('Nama penanggung jawab')
+                        ->required(),
+                    TextInput::make('pic_phone')
+                        ->label('No. Handphone')
+                        ->tel()
+                        ->required(),
+                ])
+                ->columnSpanFull()
             ]);
     }
 
