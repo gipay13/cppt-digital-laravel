@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Patients;
 
 use App\Filament\Resources\Patients\Pages\ManagePatients;
 use App\Filament\Resources\Patients\Pages\ViewPatients;
+use App\Filament\Resources\Patients\RelationManagers\CpptRelationManager;
 use App\Models\Patient;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
@@ -155,6 +156,13 @@ class PatientResource extends Resource
             ->toolbarActions([
 
             ]);
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            CpptRelationManager::class
+        ];
     }
 
     public static function getPages(): array

@@ -16,4 +16,9 @@ class Patient extends Model
             get: fn() => Carbon::parse($this->born_date)->age.' Tahun',
         );
     }
+
+    public function cppt()
+    {
+        return $this->hasMany(Cppt::class);
+    }
 }
