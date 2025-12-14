@@ -38,6 +38,7 @@ class HospitalResource extends Resource
                     ->label('Aktif')
                     ->onColor('success')
                     ->inline(false)
+                    ->onColor('success')
                     ->columnSpanFull()
             ]);
     }

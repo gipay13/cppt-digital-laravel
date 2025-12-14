@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Cppts\Pages;
 
 use App\Filament\Resources\Cppts\CpptResource;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\EditAction;
 use Filament\Resources\Pages\ViewRecord;
 
@@ -15,6 +16,9 @@ class ViewCppt extends ViewRecord
         return [
             EditAction::make()
                 ->icon('heroicon-o-pencil-square')
+                ->iconSize('sm'),
+            DeleteAction::make()
+                ->icon('heroicon-o-trash')
                 ->iconSize('sm'),
         ];
     }

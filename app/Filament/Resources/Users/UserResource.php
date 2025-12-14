@@ -5,7 +5,9 @@ namespace App\Filament\Resources\Users;
 use App\Filament\Resources\Users\Pages\ManageUsers;
 use App\Models\User;
 use BackedEnum;
+use Filament\Actions\Action;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
@@ -57,7 +59,13 @@ class UserResource extends Resource
                     ->revealable(filament()->arePasswordsRevealable())
                     ->required()
                     ->dehydrated(false)
-                    ->columnSpanFull()
+                    ->columnSpanFull(),
+                Select::make('roles')
+                    ->relationship('roles', 'name')
+                    ->multiple()
+                    ->preload()
+                    ->searchable()
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -75,6 +83,9 @@ class UserResource extends Resource
                     ->searchable(),
                 ToggleColumn::make('is_active')
                     ->label('Aktif'),
+                TextColumn::make('roles.name')
+                    ->label('Peran')
+                    ->badge(),
             ])
             ->filters([
                 //
