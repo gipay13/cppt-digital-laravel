@@ -9,6 +9,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class CpptForm
@@ -25,7 +26,7 @@ class CpptForm
                             ])
                             ->label('Rumah sakit')
                             ->native(false)
-                            ->relationship('hospital', 'name')
+                            ->relationship('hospital', 'name', fn(Builder $query) => $query->where('is_active', true))
                             ->required()
                             ->createOptionModalHeading('Tambah rumah sakit')
                             ->createOptionForm([

@@ -37,4 +37,9 @@ class CpptPolicy
         return $authUser->can('Delete:Cppt');
     }
 
+    public function viewPdf(AuthUser $authUser, Cppt $cppt): bool
+    {
+        return $authUser->can('ViewPdf:Cppt');
+    }
+
 }

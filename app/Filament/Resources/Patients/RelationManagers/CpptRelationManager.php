@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Patients\RelationManagers;
 
+use App\Models\Cppt;
+use Filament\Actions\Action;
 use Filament\Actions\AssociateAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\CreateAction;
@@ -95,6 +97,14 @@ class CpptRelationManager extends RelationManager
             ->recordActions([
                 ViewAction::make()
                     ->slideOver(),
+                Action::make('pdf')
+                    ->label('PDF')
+                    ->color('default')
+                    ->icon('heroicon-o-document')
+                    ->iconSize('sm')
+                    ->url(fn (Cppt $record) => route('pdf.cppt', $record->id))
+                    ->openUrlInNewTab()
+                    ->visible(fn ($record) => auth()->user()->can('viewPdf', $record)),
             ])
             ->toolbarActions([
                 
