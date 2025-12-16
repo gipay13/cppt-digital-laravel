@@ -6,11 +6,14 @@ use App\Filament\Resources\Hospitals\Pages\ManageHospitals;
 use App\Models\Hospital;
 use BackedEnum;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
@@ -22,7 +25,7 @@ class HospitalResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice;
 
-    protected static ?string $label = 'Rumah sakit';
+    protected static ?string $label = 'Layanan Kesehatan';
 
     protected static string | UnitEnum | null $navigationGroup = 'Master Data';
 
@@ -34,6 +37,16 @@ class HospitalResource extends Resource
                     ->label('Nama')
                     ->required()
                     ->columnSpanFull(),
+                Textarea::make('address')
+                    ->label('Alamat')
+                    ->required()
+                    ->columnSpanFull(),
+                FileUpload::make('logo')
+                    ->label('Logo')
+                    ->required()
+                    ->image()
+                    ->columnSpanFull()
+                    ->maxSize(1024),
                 Toggle::make('is_active')
                     ->label('Aktif')
                     ->onColor('success')
@@ -53,6 +66,12 @@ class HospitalResource extends Resource
                 TextColumn::make('name')
                     ->label('Nama')
                     ->searchable(),
+                TextColumn::make('address')
+                    ->label('Alamat')
+                    ->searchable(),
+                ImageColumn::make('logo')
+                    ->label('Logo')
+                    ->searchable(),
                 ToggleColumn::make('is_active')
                     ->label('Aktif')
             ])
@@ -64,7 +83,7 @@ class HospitalResource extends Resource
                     ->modalWidth('sm'),
             ])
             ->toolbarActions([
-                
+
             ]);
     }
 
