@@ -17,4 +17,9 @@ class Cppt extends Model
     {
         return $this->belongsTo(Hospital::class);
     }
+
+    public function diagnose()
+    {
+        return $this->belongsTo(Diagnose::class);
+    }
 }

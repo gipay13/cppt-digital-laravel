@@ -33,6 +33,7 @@ class DiagnoseResource extends Resource
             ->components([
                 TextInput::make('code')
                     ->label('Kode')
+                    ->unique(ignoreRecord: true)
                     ->required()
                     ->columnSpanFull(),
                 TextInput::make('name')
