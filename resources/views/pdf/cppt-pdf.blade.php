@@ -39,14 +39,49 @@
             padding: 4px;
         }
 
-        .table-list tr:nth-child(even){background-color: #f2f2f2}
-
         .second-page {
             page-break-before: always;
         }
     </style>
 </head>
 <body>
-    
+    <table style="width: 100%" class="table-list">
+        <tr>
+            <td width="1px" style="white-space: nowrap;">
+                <img src="{{ public_path('storage/'.$data->hospital->logo) }}" alt="Logo" style="width: 100px; height: 100px; object-fit: contain; margin: 0;">
+            </td>
+            <td width="50%">
+                <p style="text-align: center; font-weight: bold; font-size: 16pt; font-family: Aptos; margin: 0;">
+                    {{ $data->hospital->name }}
+                </p>
+                <p
+                    style="text-align: center; font-size: 9pt; font-family: Tahoma; margin: 0;">
+                    {{ $data->hospital->address }}
+                </p>
+                
+            </td>
+            <td>
+                <p style="text-align: start; margin: 0; font-size: 9pt; font-family: Tahoma; margin-bottom:2px;">
+                    No. Rekam Medis: {{ $data->patient->nomr }}
+                </p>
+                <p style="text-align: start; margin: 0; font-size: 9pt; font-family: Tahoma; margin-bottom:2px;">
+                    Nama: {{ $data->patient->name }}
+                </p>
+                <p style="text-align: start; margin: 0; font-size: 9pt; font-family: Tahoma; margin-bottom:2px;">
+                    Tanggal lahir: {{ $data->patient->born_date }}
+                </p>
+                <p style="text-align: start; margin: 0; font-size: 9pt; font-family: Tahoma; margin-bottom:2px;">
+                    Tanggal periksa: {{ $data->patient->created_at }}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <p style="text-align: center; font-weight: bold; font-size: 12pt; font-family: Aptos; margin: 0;">
+                    CATATAN PERKEMBANGAN PASIEN TERINTEGRASI
+                </p>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
