@@ -47,6 +47,27 @@ class CpptInfolist
                     ])
                     ->aside()
                     ->columnSpanFull(),
+                Section::make('Asesmen')
+                    ->description('Tanggal buat, layanan kesehatan, diagnosa, dan instruksi')
+                    ->schema([
+                        TextEntry::make('created_at')
+                            ->label('Tanggal buat')
+                            ->date()
+                            ->inlineLabel(),
+                        TextEntry::make('hospital.name')
+                            ->label('Layanan kesehatan')
+                            ->inlineLabel(),
+                        TextEntry::make('diagnose')
+                            ->label('Diagnosa')
+                            ->formatStateUsing(fn ($state) => $state->code.' - '.$state->name)
+                            ->inlineLabel(),
+                        TextEntry::make('instruction')
+                            ->label('Instruksi')
+                            ->inlineLabel()
+                            ->html(),
+                    ])
+                    ->aside()
+                    ->columnSpanFull(),
                 Section::make('SOAP')
                     ->description('Subjective, Objective, Assessment, Plan')
                     ->schema([
@@ -57,27 +78,11 @@ class CpptInfolist
                         TextEntry::make('assessment')
                             ->inlineLabel(),
                         TextEntry::make('plan')
-                            ->inlineLabel(),
-                    ])
-                    ->aside()
-                    ->columnSpanFull(),
-                Section::make('Data Lainnya')
-                    ->description('Tanggal buat, rumah sakit, dan instruksi')
-                    ->schema([
-                        TextEntry::make('created_at')
-                            ->label('Tanggal buat')
-                            ->date()
-                            ->inlineLabel(),
-                        TextEntry::make('hospital.name')
-                            ->label('Rumah sakit')
-                            ->inlineLabel(),
-                        TextEntry::make('instruction')
-                            ->label('Instruksi')
                             ->inlineLabel()
                             ->html(),
                     ])
                     ->aside()
-                    ->columnSpanFull()
+                    ->columnSpanFull(),
             ]);
     }
 }

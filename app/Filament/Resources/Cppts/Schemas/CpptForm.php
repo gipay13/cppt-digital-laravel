@@ -27,18 +27,18 @@ class CpptForm
                             ->extraAttributes([
                                 'wire:key' => str()->random(50)
                             ])
-                            ->label('Rumah sakit')
+                            ->label('Layanan kesehatan')
                             ->native(false)
                             ->relationship('hospital', 'name', fn(Builder $query) => $query->where('is_active', true))
                             ->required()
-                            ->createOptionModalHeading('Tambah rumah sakit')
+                            ->createOptionModalHeading('Tambah layanan kesehattan')
                             ->createOptionForm([
                                 TextInput::make('name')
                                     ->label('Nama')
                                     ->required(),
                             ])
                             ->createOptionAction(fn ($action) => $action->modalWidth('sm'))
-                            ->editOptionModalHeading('Ubah rumah sakit')
+                            ->editOptionModalHeading('Ubah layanan kesehatan')
                             ->editOptionForm([
                                 TextInput::make('name')
                                     ->label('Nama')

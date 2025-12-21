@@ -20,13 +20,17 @@ class CpptsTable
                     ->label('No.')
                     ->rowIndex(),
                 TextColumn::make('hospital.name')
-                    ->label('Rumah sakit')
+                    ->label('Layanan kesehatan')
                     ->searchable(),
                 TextColumn::make('patient.nomr')
                     ->label('Rekam Medis')
                     ->searchable(),
                 TextColumn::make('patient.name')
                     ->label('Nama pasien')
+                    ->searchable(),
+                TextColumn::make('diagnose')
+                    ->label('Diagnosa')
+                    ->formatStateUsing(fn($state) => $state->code.' - '.$state->name)
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Tanggal buat')
