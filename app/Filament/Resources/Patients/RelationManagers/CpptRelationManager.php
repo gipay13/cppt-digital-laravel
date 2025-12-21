@@ -42,6 +42,22 @@ class CpptRelationManager extends RelationManager
     {
         return $schema
             ->components([
+                Section::make('Asesmen')
+                    ->description('Tanggal buat, Layanan kesehatan, diagnosa, dan instruksi')
+                    ->schema([
+                        TextEntry::make('created_at')
+                            ->label('Tanggal buat')
+                            ->date()
+                            ->inlineLabel(),
+                        TextEntry::make('hospital.name')
+                            ->label('Layanan kesehatan')
+                            ->inlineLabel(),
+                        TextEntry::make('instruction')
+                            ->label('Instruksi')
+                            ->inlineLabel()
+                            ->html(),
+                    ])
+                    ->columnSpanFull(),
                 Section::make('SOAP')
                     ->description('Subjective, Objective, Assessment, Plan')
                     ->schema([
@@ -52,25 +68,10 @@ class CpptRelationManager extends RelationManager
                         TextEntry::make('assessment')
                             ->inlineLabel(),
                         TextEntry::make('plan')
+                            ->html()
                             ->inlineLabel(),
                     ])
                     ->columnSpanFull(),
-                Section::make('Data Lainnya')
-                    ->description('Tanggal buat, rumah sakit, dan instruksi')
-                    ->schema([
-                        TextEntry::make('created_at')
-                            ->label('Tanggal buat')
-                            ->date()
-                            ->inlineLabel(),
-                        TextEntry::make('hospital.name')
-                            ->label('Rumah sakit')
-                            ->inlineLabel(),
-                        TextEntry::make('instruction')
-                            ->label('Instruksi')
-                            ->inlineLabel()
-                            ->html(),
-                    ])
-                    ->columnSpanFull()
             ]);
     }
 
@@ -82,7 +83,11 @@ class CpptRelationManager extends RelationManager
                     ->label('No.')
                     ->rowIndex(),
                 TextColumn::make('hospital.name')
-                    ->label('Rumah sakit')
+                    ->label('Layanan kesehatan')
+                    ->searchable(),
+                TextColumn::make('diagnose')
+                    ->label('Diagnosa')
+                    ->formatStateUsing(fn($state) => $state->code.' - '.$state->name)
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Tanggal buat')

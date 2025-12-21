@@ -46,9 +46,8 @@ class PatientResource extends Resource
                 ->schema([
                     TextInput::make('nomr')
                         ->label('No. Rekam medis')
-                        ->numeric()
                         ->unique(ignoreRecord: true)
-                        ->length(8)
+                        ->length(6)
                         ->required(),
                     TextInput::make('name')
                         ->label('Nama lengkap')
@@ -150,7 +149,8 @@ class PatientResource extends Resource
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
+                ViewAction::make()
+                    ->openUrlInNewTab(),
                 EditAction::make(),
             ])
             ->toolbarActions([
