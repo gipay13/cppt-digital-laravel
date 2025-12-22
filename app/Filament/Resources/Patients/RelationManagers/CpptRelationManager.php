@@ -34,7 +34,7 @@ class CpptRelationManager extends RelationManager
     {
         return $schema
             ->components([
-                
+
             ]);
     }
 
@@ -51,6 +51,10 @@ class CpptRelationManager extends RelationManager
                             ->inlineLabel(),
                         TextEntry::make('hospital.name')
                             ->label('Layanan kesehatan')
+                            ->inlineLabel(),
+                        TextEntry::make('diagnose')
+                            ->label('Diagnosa')
+                            ->formatStateUsing(fn ($state) => $state->code.' - '.$state->name)
                             ->inlineLabel(),
                         TextEntry::make('instruction')
                             ->label('Instruksi')
@@ -97,7 +101,7 @@ class CpptRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                
+
             ])
             ->recordActions([
                 ViewAction::make()
@@ -112,7 +116,7 @@ class CpptRelationManager extends RelationManager
                     ->visible(fn ($record) => auth()->user()->can('viewPdf', $record)),
             ])
             ->toolbarActions([
-                
+
             ]);
     }
 }

@@ -14,7 +14,7 @@ class StreamCpptRecordController extends Controller
      */
     public function __invoke($id)
     {
-        $model = Cppt::with(['patient', 'hospital'])->findOrFail($id);
+        $model = Cppt::with(['patient', 'hospital', 'diagnose'])->findOrFail($id);
         return Pdf::loadView('pdf.cppt-pdf', ['data' => $model])->stream();
     }
 }

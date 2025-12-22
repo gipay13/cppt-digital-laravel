@@ -58,7 +58,7 @@
                     style="text-align: center; font-size: 9pt; font-family: Tahoma; margin: 0;">
                     {{ $data->hospital->address }}
                 </p>
-                
+
             </td>
             <td>
                 <p style="text-align: start; margin: 0; font-size: 9pt; font-family: Tahoma; margin-bottom:2px;">
@@ -68,10 +68,10 @@
                     Nama: {{ $data->patient->name }}
                 </p>
                 <p style="text-align: start; margin: 0; font-size: 9pt; font-family: Tahoma; margin-bottom:2px;">
-                    Tanggal lahir: {{ $data->patient->born_date }}
+                    Tanggal lahir: {{ date('d/m/Y', strtotime($data->patient->born_date)) }}
                 </p>
                 <p style="text-align: start; margin: 0; font-size: 9pt; font-family: Tahoma; margin-bottom:2px;">
-                    Tanggal periksa: {{ $data->patient->created_at }}
+                    Tanggal periksa: {{ date('d/m/Y', strtotime($data->patient->created_at)) }}
                 </p>
             </td>
         </tr>
@@ -81,6 +81,30 @@
                     CATATAN PERKEMBANGAN PASIEN TERINTEGRASI
                 </p>
             </td>
+        </tr>
+        <tr class="courier-prime-regular">
+            <td style="font-weight: bold">Diagnosa</td>
+            <td colspan="2">{{ $data->diagnose->code }} - {{ $data->diagnose->name }}</td>
+        </tr>
+        <tr class="courier-prime-regular">
+            <td style="font-weight: bold">Subjective</td>
+            <td colspan="2">{{ $data->subjective }}</td>
+        </tr>
+        <tr class="courier-prime-regular">
+            <td style="font-weight: bold">Objective</td>
+            <td colspan="2">{{ $data->objective }}</td>
+        </tr>
+        <tr class="courier-prime-regular">
+            <td style="font-weight: bold">Assessment</td>
+            <td colspan="2">{{ $data->assessment }}</td>
+        </tr>
+        <tr class="courier-prime-regular">
+            <td style="font-weight: bold">Plan</td>
+            <td colspan="2">{!! $data->plan !!}</td>
+        </tr>
+        <tr class="courier-prime-regular">
+            <td style="font-weight: bold">Instruksi</td>
+            <td colspan="2">{!! $data->instruction !!}</td>
         </tr>
     </table>
 </body>
