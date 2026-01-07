@@ -58,7 +58,7 @@ class CpptForm
                         Grid::make(['default' => 1, 'md' => 2])
                             ->schema([
                                 Select::make('diagnose_id')
-                                    ->label('Diagnosa')
+                                    ->label('Diagnosa Awal')
                                     ->required()
                                     ->searchable(['code', 'name'])
                                     ->native(false)

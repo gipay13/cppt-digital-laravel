@@ -82,27 +82,27 @@
                 </p>
             </td>
         </tr>
-        <tr class="courier-prime-regular">
-            <td style="font-weight: bold">Diagnosa</td>
+        <tr >
+            <td style="font-weight: bold">Diagnosa Awal</td>
             <td colspan="2">{{ $data->diagnose->code }} - {{ $data->diagnose->name }}</td>
         </tr>
-        <tr class="courier-prime-regular">
+        <tr >
             <td style="font-weight: bold">Subjective</td>
             <td colspan="2">{{ $data->subjective }}</td>
         </tr>
-        <tr class="courier-prime-regular">
+        <tr >
             <td style="font-weight: bold">Objective</td>
             <td colspan="2">{{ $data->objective }}</td>
         </tr>
-        <tr class="courier-prime-regular">
+        <tr >
             <td style="font-weight: bold">Assessment</td>
             <td colspan="2">{{ $data->assessment }}</td>
         </tr>
-        <tr class="courier-prime-regular">
+        <tr >
             <td style="font-weight: bold">Plan</td>
             <td colspan="2">{!! $data->plan !!}</td>
         </tr>
-        <tr class="courier-prime-regular">
+        <tr >
             <td style="font-weight: bold">Instruksi</td>
             <td colspan="2">{!! $data->instruction !!}</td>
         </tr>

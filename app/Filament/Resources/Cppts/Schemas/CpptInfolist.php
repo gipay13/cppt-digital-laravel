@@ -58,7 +58,7 @@ class CpptInfolist
                             ->label('Layanan kesehatan')
                             ->inlineLabel(),
                         TextEntry::make('diagnose')
-                            ->label('Diagnosa')
+                            ->label('Diagnosa Awal')
                             ->formatStateUsing(fn ($state) => $state->code.' - '.$state->name)
                             ->inlineLabel(),
                         TextEntry::make('instruction')

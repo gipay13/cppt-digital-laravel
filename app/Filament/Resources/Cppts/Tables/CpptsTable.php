@@ -29,7 +29,7 @@ class CpptsTable
                     ->label('Nama pasien')
                     ->searchable(),
                 TextColumn::make('diagnose')
-                    ->label('Diagnosa')
+                    ->label('Diagnosa Awal')
                     ->formatStateUsing(fn($state) => $state->code.' - '.$state->name)
                     ->searchable(),
                 TextColumn::make('created_at')

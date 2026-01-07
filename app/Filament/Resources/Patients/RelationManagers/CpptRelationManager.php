@@ -19,6 +19,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -53,7 +54,7 @@ class CpptRelationManager extends RelationManager
                             ->label('Layanan kesehatan')
                             ->inlineLabel(),
                         TextEntry::make('diagnose')
-                            ->label('Diagnosa')
+                            ->label('Diagnosa Awal')
                             ->formatStateUsing(fn ($state) => $state->code.' - '.$state->name)
                             ->inlineLabel(),
                         TextEntry::make('instruction')
@@ -90,7 +91,7 @@ class CpptRelationManager extends RelationManager
                     ->label('Layanan kesehatan')
                     ->searchable(),
                 TextColumn::make('diagnose')
-                    ->label('Diagnosa')
+                    ->label('Diagnosa Awal')
                     ->formatStateUsing(fn($state) => $state->code.' - '.$state->name)
                     ->searchable(),
                 TextColumn::make('created_at')
@@ -101,7 +102,12 @@ class CpptRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-
+                Action::make('create')
+                    ->label('Buat CPPT')
+                    ->icon(Heroicon::Plus)
+                    ->iconSize('sm')
+                    ->url(route('filament.dashboard.resources.cppts.create'))
+                    ->openUrlInNewTab()
             ])
             ->recordActions([
                 ViewAction::make()
