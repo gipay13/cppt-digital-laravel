@@ -83,7 +83,7 @@
             </td>
         </tr>
         <tr >
-            <td style="font-weight: bold">Diagnosa Awal</td>
+            <td style="font-weight: bold">Diagnosis</td>
             <td colspan="2">{{ $data->diagnose->code }} - {{ $data->diagnose->name }}</td>
         </tr>
         <tr >

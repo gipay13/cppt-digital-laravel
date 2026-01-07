@@ -54,7 +54,7 @@ class CpptRelationManager extends RelationManager
                             ->label('Layanan kesehatan')
                             ->inlineLabel(),
                         TextEntry::make('diagnose')
-                            ->label('Diagnosa Awal')
+                            ->label('Diagnosis')
                             ->formatStateUsing(fn ($state) => $state->code.' - '.$state->name)
                             ->inlineLabel(),
                         TextEntry::make('instruction')
@@ -91,7 +91,7 @@ class CpptRelationManager extends RelationManager
                     ->label('Layanan kesehatan')
                     ->searchable(),
                 TextColumn::make('diagnose')
-                    ->label('Diagnosa Awal')
+                    ->label('Diagnosis')
                     ->formatStateUsing(fn($state) => $state->code.' - '.$state->name)
                     ->searchable(),
                 TextColumn::make('created_at')

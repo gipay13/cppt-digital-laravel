@@ -23,7 +23,7 @@ class DiagnoseResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedLightBulb;
 
-    protected static ?string $label = 'Diagnosa';
+    protected static ?string $label = 'Diagnosis';
 
     protected static string | UnitEnum | null $navigationGroup = 'Master Data';
 
