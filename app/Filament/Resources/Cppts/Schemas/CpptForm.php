@@ -3,14 +3,12 @@
 namespace App\Filament\Resources\Cppts\Schemas;
 
 use App\Filament\Resources\Patients\PatientResource;
-use App\Models\Diagnose;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
-use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -21,13 +19,14 @@ class CpptForm
     {
         return $schema
             ->components([
-                Section::make()
+                Section::make('')
                     ->schema([
                         Select::make('hospital_id')
                             ->extraAttributes([
                                 'wire:key' => str()->random(50)
                             ])
                             ->label('Layanan kesehatan')
+                            ->inlineLabel()
                             ->native(false)
                             ->relationship('hospital', 'name', fn(Builder $query) => $query->where('is_active', true))
                             ->required()
@@ -47,6 +46,7 @@ class CpptForm
                             ->editOptionAction(fn ($action) => $action->modalWidth('sm')),
                         Select::make('patient_id')
                             ->label('Pasien')
+                            ->inlineLabel()
                             ->searchable(['nomr', 'name'])
                             ->native(false)
                             ->relationship('patient')
@@ -55,27 +55,19 @@ class CpptForm
                             ->createOptionModalHeading('Tambah pasien')
                             ->createOptionForm(fn (Schema $schema) => PatientResource::form($schema))
                             ->createOptionAction(fn ($action) => $action->modalWidth('xl')),
-                        Grid::make(['default' => 1, 'md' => 2])
-                            ->schema([
-                                Select::make('diagnose_id')
-                                    ->label('Diagnosa Awal')
-                                    ->required()
-                                    ->searchable(['code', 'name'])
-                                    ->native(false)
-                                    ->relationship('diagnose', 'code')
-                                    ->live()
-                                    ->afterStateUpdated(function(Set $set, $state) {
-                                        $model = Diagnose::where('id', $state)->first();
-                                        $set('assessment', $model->name);
-                                    }),
-                            ])
-                            ->columnSpanFull(),
+                    ])
+                    ->columnSpanFull(),
+                Section::make('')
+                    ->schema([
                         Textarea::make('subjective')
-                            ->required(),
+                            ->required()
+                            ->rows(4),
                         Textarea::make('objective')
-                            ->required(),
+                            ->required()
+                            ->rows(4),
                         Textarea::make('assessment')
-                            ->required(),
+                            ->required()
+                            ->rows(4),
                         RichEditor::make('plan')
                             ->required()
                             ->toolbarButtons([
@@ -84,6 +76,23 @@ class CpptForm
                                 ['undo', 'redo'],
                             ])
                             ->columnSpanFull(),
+                    ])
+                    ->columns([
+                        'default' => 1,
+                        'sm' => 2,
+                        'md' => 3
+                    ])
+                    ->columnSpanFull(),
+                Section::make('')
+                    ->schema([
+                        Select::make('diagnose_id')
+                            ->label('Diagnosis')
+                            ->inlineLabel()
+                            ->required()
+                            ->searchable(['code', 'name'])
+                            ->native(false)
+                            ->getOptionLabelFromRecordUsing(fn (Model $record) => "{$record->code} - {$record->name}")
+                            ->relationship('diagnose', 'code'),
                         RichEditor::make('instruction')
                             ->label('Instruksi')
                             ->required()
@@ -94,11 +103,7 @@ class CpptForm
                             ])
                             ->columnSpanFull()
                     ])
-                    ->columns([
-                        'default' => 1,
-                        'md' => 2
-                    ])
-                    ->columnSpanFull()
+                    ->columnSpanFull(),
             ]);
     }
 }
