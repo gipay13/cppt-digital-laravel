@@ -17,7 +17,7 @@ use Illuminate\Contracts\Support\Htmlable;
 class CpptChart extends ChartWidget
 {
     use HasWidgetShield, HasFiltersSchema;
-    
+
     public function getHeading(): string | Htmlable | null
     {
         return 'Grafik CPPT per bulan di tahun ' . ($this->filters['year'] ?? date('Y'));
@@ -47,12 +47,15 @@ class CpptChart extends ChartWidget
         $year = $this->filters['year'] ?? date('Y');
         $diagnose = $this->filters['diagnose'] ?? null;
 
+        $start = Carbon::create($year)->startOfYear();
+        $end   = Carbon::create($year)->endOfYear();
+
         $data = Trend::query(
                 Cppt::whereYear('created_at', $year)->when($diagnose, fn ($query) => $query->where('diagnose_id', $diagnose))
             )
             ->between(
-                start: now()->startOfYear(),
-                end: now()->endOfYear(),
+                start: $start,
+                end: $end,
             )
             ->perMonth()
             ->count();
