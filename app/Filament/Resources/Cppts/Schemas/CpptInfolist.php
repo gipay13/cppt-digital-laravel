@@ -47,6 +47,21 @@ class CpptInfolist
                     ])
                     ->aside()
                     ->columnSpanFull(),
+                Section::make('SOAP')
+                    ->description('Subjective, Objective, Assessment, Plan')
+                    ->schema([
+                        TextEntry::make('subjective')
+                            ->inlineLabel(),
+                        TextEntry::make('objective')
+                            ->inlineLabel(),
+                        TextEntry::make('assessment')
+                            ->inlineLabel(),
+                        TextEntry::make('plan')
+                            ->inlineLabel()
+                            ->html(),
+                    ])
+                    ->aside()
+                    ->columnSpanFull(),
                 Section::make('Asesmen')
                     ->description('Tanggal buat, layanan kesehatan, diagnosa, dan instruksi')
                     ->schema([
@@ -63,21 +78,6 @@ class CpptInfolist
                             ->inlineLabel(),
                         TextEntry::make('instruction')
                             ->label('Instruksi')
-                            ->inlineLabel()
-                            ->html(),
-                    ])
-                    ->aside()
-                    ->columnSpanFull(),
-                Section::make('SOAP')
-                    ->description('Subjective, Objective, Assessment, Plan')
-                    ->schema([
-                        TextEntry::make('subjective')
-                            ->inlineLabel(),
-                        TextEntry::make('objective')
-                            ->inlineLabel(),
-                        TextEntry::make('assessment')
-                            ->inlineLabel(),
-                        TextEntry::make('plan')
                             ->inlineLabel()
                             ->html(),
                     ])
