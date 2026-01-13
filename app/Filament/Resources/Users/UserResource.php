@@ -52,6 +52,7 @@ class UserResource extends Resource
                     ->rule(Password::default())
                     ->showAllValidationMessages()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->dehydrated(fn (?string $state): bool => filled($state))
                     ->same('passwordConfirmation')
                     ->columnSpanFull(),
                 TextInput::make('passwordConfirmation')
