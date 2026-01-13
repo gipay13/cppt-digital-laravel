@@ -48,7 +48,7 @@ class UserResource extends Resource
                     ->label('Kata sandi')
                     ->password()
                     ->revealable(filament()->arePasswordsRevealable())
-                    ->required()
+                    ->required(fn (string $operation): bool => $operation === 'create')
                     ->rule(Password::default())
                     ->showAllValidationMessages()
                     ->dehydrateStateUsing(fn ($state) => Hash::make($state))
@@ -58,7 +58,7 @@ class UserResource extends Resource
                     ->label('Konfirmasi kata sandi')
                     ->password()
                     ->revealable(filament()->arePasswordsRevealable())
-                    ->required()
+                    ->required(fn (string $operation): bool => $operation === 'create')
                     ->dehydrated(false)
                     ->columnSpanFull(),
                 Select::make('roles')
