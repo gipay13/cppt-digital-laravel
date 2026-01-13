@@ -42,6 +42,7 @@ class UserResource extends Resource
                 TextInput::make('email')
                     ->email()
                     ->required()
+                    ->unique(ignoreRecord: true)
                     ->columnSpanFull(),
                 TextInput::make('password')
                     ->label('Kata sandi')
@@ -95,7 +96,7 @@ class UserResource extends Resource
                     ->modalWidth('sm'),
             ])
             ->toolbarActions([
-                
+
             ]);
     }
 
