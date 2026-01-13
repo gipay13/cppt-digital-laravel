@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
-use App\Models\Diagnose;
 use Illuminate\Foundation\Auth\User as AuthUser;
+use App\Models\Diagnose;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class DiagnosePolicy
@@ -15,7 +17,7 @@ class DiagnosePolicy
         return $authUser->can('ViewAny:Diagnose');
     }
 
-    public function view(AuthUser $authUser, Diagnose $cppt): bool
+    public function view(AuthUser $authUser, Diagnose $diagnose): bool
     {
         return $authUser->can('View:Diagnose');
     }
@@ -25,18 +27,14 @@ class DiagnosePolicy
         return $authUser->can('Create:Diagnose');
     }
 
-    public function update(AuthUser $authUser, Diagnose $cppt): bool
+    public function update(AuthUser $authUser, Diagnose $diagnose): bool
     {
         return $authUser->can('Update:Diagnose');
     }
 
-    public function delete(AuthUser $authUser, Diagnose $cppt): bool
+    public function delete(AuthUser $authUser, Diagnose $diagnose): bool
     {
         return $authUser->can('Delete:Diagnose');
     }
 
-    public function viewPdf(AuthUser $authUser, Diagnose $cppt): bool
-    {
-        return $authUser->can('ViewPdf:Diagnose');
-    }
 }
