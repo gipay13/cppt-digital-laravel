@@ -3,11 +3,11 @@
 namespace App\Filament\Resources\Cppts\Schemas;
 
 use App\Filament\Resources\Patients\PatientResource;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
-use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,6 +21,11 @@ class CpptForm
             ->components([
                 Section::make('')
                     ->schema([
+                        DatePicker::make('created_at')
+                            ->label('Tanggal buat')
+                            ->inlineLabel()
+                            ->default(today())
+                            ->native(false),
                         Select::make('hospital_id')
                             ->extraAttributes([
                                 'wire:key' => str()->random(50)
