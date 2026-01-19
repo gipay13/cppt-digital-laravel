@@ -48,7 +48,7 @@
     <table style="width: 100%" class="table-list">
         <tr>
             <td width="1px" style="white-space: nowrap;">
-                <img src="{{ public_path('storage/'.$data->hospital->logo) }}" alt="Logo" style="width: 100px; height: 100px; object-fit: contain; margin: 0;">
+                <img src="{{ public_path('storage/'.$data->hospital->logo) }}" alt="Logo" style="width: 150px; height: 75px; object-fit: contain; object-position: center; display: block;">
             </td>
             <td width="50%">
                 <p style="text-align: center; font-weight: bold; font-size: 16pt; font-family: Aptos; margin: 0;">
