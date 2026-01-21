@@ -71,7 +71,7 @@
                     Tanggal lahir: {{ date('d/m/Y', strtotime($data->patient->born_date)) }}
                 </p>
                 <p style="text-align: start; margin: 0; font-size: 9pt; font-family: Tahoma; margin-bottom:2px;">
-                    Tanggal periksa: {{ date('d/m/Y', strtotime($data->patient->created_at)) }}
+                    Tanggal periksa: {{ date('d/m/Y', strtotime($data->created_at)) }}
                 </p>
             </td>
         </tr>
